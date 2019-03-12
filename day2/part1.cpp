@@ -3,7 +3,7 @@
 #include <regex>
 #include <cmath>
 
-int right_rectangular_prism_area(int length, int width, int height);
+double right_rectangular_prism_area(double length, double width, double height);
 
 int main() {
     std::ifstream input_file("input.txt");
@@ -13,9 +13,9 @@ int main() {
     for (std::string line; std::getline(input_file, line);) {
         std::smatch matches;
         std::regex_match(line, matches, polyhedra_dimension);
-        int length = std::stod(matches[1]);
-        int width = std::stod(matches[2]);
-        int height = std::stod(matches[3]);
+        double length = std::stod(matches[1]);
+        double width = std::stod(matches[2]);
+        double height = std::stod(matches[3]);
         std::cout << right_rectangular_prism_area(length, width, height) << std::endl;
         total_surface_area += right_rectangular_prism_area(length, width, height);
         total_surface_area += std::min({(length * width), (width * height), (length * height)});
@@ -25,6 +25,6 @@ int main() {
     return 0;
 }
 
-int right_rectangular_prism_area(int length, int width, int height) {
+double right_rectangular_prism_area(double length, double width, double height) {
     return (2 * (length * width)) + (2 * (width * height)) + (2 * (length * height));
 }
